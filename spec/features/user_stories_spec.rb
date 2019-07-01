@@ -16,4 +16,10 @@ describe Oystercard do
   money = 10
   expect(oystercard.top_up(money)).to eq (0 + money)
 end
+
+# In order to protect my money from theft or loss
+# As a customer
+# I want a maximum limit (of £90) on my card
+
+
 end
