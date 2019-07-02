@@ -20,21 +20,7 @@ class Oystercard
     @balance += money
   end
 
-  def touch_in(entry_station)
-    raise 'Insufficient funds - please top up' if @balance < MINIMUM_FARE # balance also works here
-    @entry_station = entry_station
-  end
-
-  def touch_out(exit_station)
-    deduct(MINIMUM_FARE)
-    @journey_history << {entry_station: entry_station, exit_station: exit_station}
-    @entry_station = nil
-  end
-
-  def in_journey?
-    @entry_station != nil
-  end
-
+  
   private
 
   def max(money)
