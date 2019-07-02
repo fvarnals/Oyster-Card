@@ -12,7 +12,8 @@ describe Oystercard do
     expect(oystercard.max_balance).to eq Oystercard::DEFAULT_MAX_BALANCE
     end
     it 'raises an error if someone tries to put more than £90' do
-      expect { oystercard.top_up(91)}.to raise_error 'Max top up allowed is £90. Please select different amount'
+      oystercard.top_up(Oystercard::DEFAULT_MAX_BALANCE)
+      expect { oystercard.top_up(money) }.to raise_error 'Max top up allowed is £90. Please select different amount'
     end
 
   end
@@ -20,6 +21,13 @@ describe Oystercard do
     it 'we want a top-up method which allows adding money to balance' do
       expect(oystercard.top_up(money)).to eq (0 + money)
     end
+
+  describe 'deduct' do
+    it 'deducts a fare when taking a journey' do
+      oystercard.top_up(10)
+      expect(oystercard.deduct(5)).to eq 5
+    end
+  end
   end
 
 end
