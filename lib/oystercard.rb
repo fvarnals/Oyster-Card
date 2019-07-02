@@ -1,5 +1,5 @@
 require 'money'
-
+require 'pry'
 
 class Oystercard
    DEFAULT_MAX_BALANCE = 90
@@ -13,13 +13,15 @@ class Oystercard
   end
 
   def top_up(money)
-    raise 'Max top up allowed is £90. Please select different amount' if money + balance > DEFAULT_MAX_BALANCE
+    raise 'Max top up allowed is £90. Please select different amount' if max(money) #money + balance > DEFAULT_MAX_BALANCE
     @balance += money
   end
 
-  # private
-  #
-  # def max(money, balance)
-  #   money + balance > DEFAULT_MAX_BALANCE
-  # end
+  private
+
+  def max(money)
+    money + @balance > DEFAULT_MAX_BALANCE
+  end
 end
+
+binding.pry
