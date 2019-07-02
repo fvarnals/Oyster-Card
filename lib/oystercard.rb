@@ -20,7 +20,7 @@ class Oystercard
   private
 
   def max(money)
-    money + @balance > DEFAULT_MAX_BALANCE
+    money + balance > DEFAULT_MAX_BALANCE
   end
 end
 
