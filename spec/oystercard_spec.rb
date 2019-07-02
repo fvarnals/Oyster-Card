@@ -27,6 +27,23 @@ describe Oystercard do
       oystercard.top_up(10)
       expect(oystercard.deduct(5)).to eq 5
     end
+
+    describe 'touch_in' do
+      it 'is in journey if card is touched in' do
+        oystercard.top_up(10)
+        oystercard.touch_in
+        expect(oystercard.in_journey?).to eq true
+      end
+    end
+
+    describe 'touch_out' do
+      it 'is not in journey if card is touched out' do
+        oystercard.top_up(10)
+        oystercard.touch_in
+        oystercard.touch_out
+        expect(oystercard.in_journey?).to eq false
+      end
+    end
   end
   end
 
