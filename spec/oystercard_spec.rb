@@ -24,19 +24,20 @@ describe Oystercard do
     end
 
     describe 'touch_in' do
-      it 'is in journey if card is touched in' do
-        oystercard.top_up(10)
-        oystercard.touch_in(:station)
-        expect(oystercard.in_journey?).to eq true
-      end
+      # it 'is in journey if card is touched in' do
+      #   oystercard.top_up(10)
+      #   oystercard.touch_in(:station)
+      #   expect(oystercard.in_journey?).to eq true
+      # end
+
       it 'raises error if balance is below touch in minimum' do
         expect { oystercard.touch_in(:station) }.to raise_error 'Insufficient funds - please top up'
       end
-      it 'records entry station after the touch in' do
-        oystercard.top_up(10)
-        oystercard.touch_in(:station)
-        expect(oystercard.entry_station).to eq :station
-      end
+    #   it 'records entry station after the touch in' do
+    #     oystercard.top_up(10)
+    #     oystercard.touch_in(:station)
+    #     expect(oystercard.entry_station).to eq :station
+    #   end
     end
 
     describe 'touch_out' do
