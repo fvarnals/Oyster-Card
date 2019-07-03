@@ -12,7 +12,7 @@ class Oystercard
     @max_balance = max_balance
     @entry_station = nil
     @journey_history = []
-    # @money = money
+    # @money = money 
   end
 
   def top_up(money)
