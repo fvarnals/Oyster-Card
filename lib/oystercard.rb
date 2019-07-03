@@ -39,8 +39,12 @@ class Oystercard
 
   private
 
-  def finish_journey(station)
+  def finish_journey(station = nil)
     @current_journey.end_journey(station)
+    store_journey_and_deduct_fare
+  end
+
+  def store_journey_and_deduct_fare
     @journey_history << @current_journey
     deduct(@current_journey.fare)
     @current_journey = nil
@@ -60,10 +64,7 @@ def start_journey(station = nil)
 end
 
 def resolve_unended_journey_and_start_new_journey(station)
-  @current_journey.end_journey
-  @journey_history << @current_journey
-  deduct(@current_journey.fare)
-  @current_journey = nil
+  finish_journey
   start_journey(station)
 end
 
