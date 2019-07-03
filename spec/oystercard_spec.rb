@@ -23,7 +23,7 @@ describe Oystercard do
       expect(oystercard.top_up(money)).to eq (0 + money)
     end
 
-    describe 'touch_in' do
+    describe 'check_sufficient_funds' do
       # it 'is in journey if card is touched in' do
       #   oystercard.top_up(10)
       #   oystercard.touch_in(:station)
