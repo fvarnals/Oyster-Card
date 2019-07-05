@@ -12,8 +12,12 @@ class Journey
     fare_calculate
   end
 
+  def incomplete?
+    @entry_station.nil? || @exit_station.nil?
+  end
+
   def fare_calculate
-    if @entry_station.nil? || @exit_station.nil?
+    if incomplete?
       @fare = 6
     else
       @fare = Oystercard::MINIMUM_FARE

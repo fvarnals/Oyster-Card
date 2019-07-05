@@ -9,7 +9,7 @@ class Oystercard
   def initialize(balance = 0, max_balance = DEFAULT_MAX_BALANCE)
     @balance = balance
     @max_balance = max_balance
-    @journey_history = []
+    @journey_history = JourneyLog.new
     @current_journey = nil
     # @amount = amount
   end
@@ -21,12 +21,12 @@ class Oystercard
 
   def touch_in(station)
     check_sufficient_funds
-    @current_journey.nil? ? start_journey(station) : resolve_unended_journey_and_start_new_journey(station)
+    @current_journey.nil? ? @journey_history.start(station) : resolve_unended_journey_and_start_new_journey(station)
   end
 
   def touch_out(station)
-    start_journey if @current_journey.nil?
-    finish_journey(station)
+    @journey_history.start(station) if @current_journey.nil?
+    @journey_history.finish(station)
   end
 
   def in_journey?
@@ -57,10 +57,6 @@ end
 
 def deduct(fare)
   @balance -= fare
-end
-
-def start_journey(station = nil)
-  @current_journey = Journey.new(station)
 end
 
 def resolve_unended_journey_and_start_new_journey(station)

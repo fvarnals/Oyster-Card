@@ -52,12 +52,6 @@ describe Oystercard do
         oystercard.touch_in(:station)
         expect { oystercard.touch_out(:station) }.to change{oystercard.balance}.by(-Oystercard::MINIMUM_FARE)
       end
-      it 'records a journey when touching in and out' do
-        oystercard.top_up(10)
-        oystercard.touch_in(:station)
-        oystercard.touch_out(:station)
-        expect(oystercard.journey_history.length).to eq 1
-      end
     end
 
   end
